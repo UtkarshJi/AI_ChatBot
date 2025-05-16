@@ -11,14 +11,14 @@
 // export default App;
 
 import React from "react";
-import Sidebar from "./components/Sidebar";
+//import Sidebar from "./components/Sidebar";
 import MainBody from "./components/Main";
 
 const App = () => (
   <div className="flex h-screen">
-    <div className="w-64">
+    {/*<div className="w-64">
       <Sidebar />
-    </div>
+    </div>*/}
     <div className="flex-1 flex flex-col">
       <MainBody />
     </div>
