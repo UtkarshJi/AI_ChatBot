@@ -1,12 +1,52 @@
-# React + Vite
+# CheemAI 🤖💬
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CheemAI is a web-based AI chatbot built using React and Vite. It connects to the GROQ API to provide real-time conversational responses.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Chat interface with user input and AI-generated responses
+- Responsive and clean UI
+- Environment variables for secure API integration
+- Deployed on Vercel
 
-## Expanding the ESLint configuration
+## 🌐 Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 [cheemai.vercel.app](https://cheemai.vercel.app/)
+
+## 🛠️ Tech Stack
+
+- React + Vite
+- Tailwind CSS
+- GROQ API
+- Vercel (for deployment)
+
+## 📦 Getting Started
+
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/UtkarshJi/AI_ChatBot.git
+   cd AI_ChatBot
+
+2. **Install dependencies:**
+    ```bash
+    npm install
+
+3. **Create a .env file and add your API key:**
+    ```env
+    VITE_API_KEY=your_groq_api_key_here
+
+4. **Start the development server:**
+    ```bash
+    npm run dev
+
+## ⚙️ Deployment
+
+This project is deployed using Vercel. To deploy your own version:
+- Push your code to GitHub.
+- Go to vercel.com and import the GitHub repository.
+- Add your VITE_API_KEY in the Environment Variables section.
+- Deploy and enjoy!
+
+## 📄 License
+
+This project is open-source and available under the MIT License.
