@@ -93,7 +93,6 @@
 import React, { useState } from "react";
 
 const apiKey = import.meta.env.VITE_API_KEY;
-console.log(apiKey);
 
 function ChatInput({ setHistoryData }) {
   const [userMessage, setUserMessage] = useState('');
