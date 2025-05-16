@@ -59,30 +59,44 @@
 
 // export default MainBody;
 
+
 // import React, { useState } from "react";
 // import ChatInput from "./ChatInput";
 
 // const MainBody = () => {
 //   const [historyData, setHistoryData] = useState([]);
-
+  
 //   return (
+    
 //     <div className="relative h-screen w-full bg-white dark:bg-gray-900 flex flex-col">
-//       {/* Chat messages */}
+//       {/* Message area */}
 //       <div className="flex-1 overflow-y-auto px-4 py-4">
-//         {historyData.map((item, index) => (
-//           <div key={index} className="mb-4">
-//             <div className="bg-blue-100 dark:bg-blue-800 text-gray-900 dark:text-white p-2 rounded-lg max-w-xl mx-auto text-left">
-//               <strong>You:</strong> {item.userMessage}
-//             </div>
-//             <div className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-lg max-w-xl mx-auto mt-1 text-left">
-//               <strong>Cheems:</strong> {item.aiResponse}
-//             </div>
+//         {historyData.length === 0 ? (
+//           // Show welcome message when there's no chat
+//           <div className="flex flex-col items-center justify-center text-center mt-40 text-gray-800 dark:text-white">
+//             <h1 className="text-3xl font-semibold">Ask me anything!</h1>
+//             <p className="text-lg mt-2">
+//             ~ developed by <span className="font-bold text-blue-500">UtkarshJi</span>.
+//             </p>
 //           </div>
-//         ))}
+
+//         ) : (
+//           // Show chat history when messages exist
+//           historyData.map((item, index) => (
+//             <div key={index} className="mb-4">
+//               <div className="bg-blue-100 dark:bg-blue-800 text-gray-900 dark:text-white p-2 rounded-lg max-w-xl mx-auto text-left">
+//                 <strong>You:</strong> {item.userMessage}
+//               </div>
+//               <div className="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-lg max-w-xl mx-auto mt-1 text-left">
+//                 <strong>Cheems:</strong> {item.aiResponse}
+//               </div>
+//             </div>
+//           ))
+//         )}
 //       </div>
 
 //       {/* Chat input at bottom */}
-//       <div className="w-full">
+//       <div className="w-full mb-8">
 //         <ChatInput setHistoryData={setHistoryData} />
 //       </div>
 //     </div>
@@ -98,17 +112,17 @@ const MainBody = () => {
   const [historyData, setHistoryData] = useState([]);
 
   return (
-    <div className="relative h-screen w-full bg-white dark:bg-gray-900 flex flex-col">
+    <div className="flex flex-col h-full bg-white dark:bg-gray-900">
       {/* Message area */}
       <div className="flex-1 overflow-y-auto px-4 py-4">
         {historyData.length === 0 ? (
-          // Show welcome message when there's no chat
-          <div className="text-center mt-40 text-gray-800 dark:text-white">
+          <div className="flex flex-col items-center justify-center text-center mt-40 text-gray-800 dark:text-white">
             <h1 className="text-3xl font-semibold">Ask me anything!</h1>
-            <p className="text-lg mt-2">~ developed by <span className="font-bold text-blue-500">UtkarshJi</span>.</p>
+            <p className="text-lg mt-2">
+              ~ developed by <span className="font-bold text-blue-500">UtkarshJi</span>.
+            </p>
           </div>
         ) : (
-          // Show chat history when messages exist
           historyData.map((item, index) => (
             <div key={index} className="mb-4">
               <div className="bg-blue-100 dark:bg-blue-800 text-gray-900 dark:text-white p-2 rounded-lg max-w-xl mx-auto text-left">
@@ -123,7 +137,7 @@ const MainBody = () => {
       </div>
 
       {/* Chat input at bottom */}
-      <div className="w-full mb-8">
+      <div className="px-4 py-4 bg-white dark:bg-gray-900 shadow-md">
         <ChatInput setHistoryData={setHistoryData} />
       </div>
     </div>

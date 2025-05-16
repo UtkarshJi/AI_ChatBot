@@ -20,15 +20,12 @@
 // export default ChatInput;
 
 
-
 // import React, { useState } from "react";
 
-// // API Key and base URL (replace with your Groq API key)
 // const API_KEY = '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';
 
 // function ChatInput({ setHistoryData }) {
 //   const [userMessage, setUserMessage] = useState('');
-//   const [aiMessage, setAiMessage] = useState('');
 
 //   const clearInput = () => setUserMessage('');
 
@@ -53,7 +50,6 @@
 //       const data = await response.json();
 
 //       const aiMessageResponse = data.choices[0]?.message?.content || "No response";
-//       setAiMessage(aiMessageResponse);
 
 //       if (aiMessageResponse && userMessage) {
 //         setHistoryData(prev => [...prev, { userMessage, aiResponse: aiMessageResponse }]);
@@ -66,13 +62,8 @@
 //   };
 
 //   return (
-//     <div className="w-full fixed bottom-0 left-0 px-4 py-3 bg-white dark:bg-gray-900 shadow-md">
-//       {/* ✅ AI Response Box ABOVE input field */}
-//       {/*<div id="output" className="max-w-3xl mx-auto text-center text-gray-800 dark:text-gray-200 mb-2">
-//         {aiMessage}
-//       </div>*/}
-
-//       {/* Input box and send button */}
+//     <div className="w-full px-4 py-4 pb-16 bg-white dark:bg-gray-900 shadow-md fixed bottom-0 left-0">
+//       {/* Input field */}
 //       <div className="max-w-3xl mx-auto flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-3">
 //         <input
 //           type="text"
@@ -88,10 +79,10 @@
 //           🡡
 //         </button>
 //       </div>
-//       <br />
-//       {/* Bottom-centered "Made with ❤️" message */}
+
+//       {/* Love message */}
 //       <p className="fixed bottom-2 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-300 text-sm">
-//         Made with <span className="mx-1 text-red-500">❤️</span>
+//         Made with <span className="mx-1 text-red-500">❤️</span> by UtkarshJi
 //       </p>
 //     </div>
 //   );
@@ -101,7 +92,8 @@
 
 import React, { useState } from "react";
 
-const API_KEY = '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';
+const apiKey = import.meta.env.VITE_API_KEY;
+console.log(apiKey);
 
 function ChatInput({ setHistoryData }) {
   const [userMessage, setUserMessage] = useState('');
@@ -114,7 +106,7 @@ function ChatInput({ setHistoryData }) {
     const options = {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${API_KEY}`,
+        'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
@@ -141,8 +133,7 @@ function ChatInput({ setHistoryData }) {
   };
 
   return (
-    <div className="w-full px-4 py-4 pb-16 bg-white dark:bg-gray-900 shadow-md fixed bottom-0 left-0">
-      {/* Input field */}
+    <>
       <div className="max-w-3xl mx-auto flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-3">
         <input
           type="text"
@@ -150,6 +141,7 @@ function ChatInput({ setHistoryData }) {
           value={userMessage}
           onChange={(e) => setUserMessage(e.target.value)}
           className="flex-1 bg-transparent outline-none text-gray-800 dark:text-white"
+          onKeyDown={(e) => e.key === 'Enter' && getMessage()}
         />
         <button
           onClick={getMessage}
@@ -159,11 +151,11 @@ function ChatInput({ setHistoryData }) {
         </button>
       </div>
 
-      {/* Love message */}
-      <p className="fixed bottom-2 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-300 text-sm">
-        Made with <span className="mx-1 text-red-500">❤️</span> by UtkarshJi
+      {/* Bottom-centered "Made with ❤️" message */}
+      <p className="text-center text-gray-600 dark:text-gray-300 text-sm mt-1">
+        Made with <span className="mx-1 text-red-500">❤️</span>
       </p>
-    </div>
+    </>
   );
 }
 
