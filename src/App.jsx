@@ -55,7 +55,7 @@ import MainBody from "./components/Main";
 import { FiMenu } from "react-icons/fi";
 
 export default function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [history, setHistory]          = useState([]);   //  ← shared
   const [active,  setActive]           = useState(null); //  ← which convo to show
 
