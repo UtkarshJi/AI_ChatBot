@@ -1,3 +1,5 @@
+Note: THIS BOT IS STILL UNDER DEVELOPMENT
+
 # CheemAI 🤖💬
 
 CheemAI is a web-based AI chatbot built using React and Vite. It connects to the GROQ API to provide real-time conversational responses.
