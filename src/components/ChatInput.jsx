@@ -1,28 +1,6 @@
-// import React from "react";
-
-// function ChatInput() {
-//   return (
-//     <div className="w-full fixed bottom-0 left-0 px-4 py-3 bg-white shadow-md">
-//       <div className="max-w-3xl mx-auto flex items-center gap-2 bg-gray-100 rounded-lg p-3">
-//         <input
-//           type="text"
-//           placeholder="Send a message..."
-//           className="flex-1 bg-transparent outline-none text-gray-800"
-//         />
-//         <button className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition">
-//         🡡
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default ChatInput;
-
-
 // import React, { useState } from "react";
 
-// const API_KEY = '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';
+// const apiKey = import.meta.env.VITE_API_KEY;
 
 // function ChatInput({ setHistoryData }) {
 //   const [userMessage, setUserMessage] = useState('');
@@ -35,13 +13,13 @@
 //     const options = {
 //       method: 'POST',
 //       headers: {
-//         'Authorization': `Bearer ${API_KEY}`,
+//         'Authorization': `Bearer ${apiKey}`,
 //         'Content-Type': 'application/json',
 //       },
 //       body: JSON.stringify({
 //         model: "llama-3.3-70b-versatile",
 //         messages: [{ role: "user", content: userMessage }],
-//         max_tokens: 100,
+//         max_tokens: 900,
 //       }),
 //     };
 
@@ -50,7 +28,7 @@
 //       const data = await response.json();
 
 //       const aiMessageResponse = data.choices[0]?.message?.content || "No response";
-
+//       console.log("AI raw", aiMessageResponse);
 //       if (aiMessageResponse && userMessage) {
 //         setHistoryData(prev => [...prev, { userMessage, aiResponse: aiMessageResponse }]);
 //       }
@@ -62,8 +40,7 @@
 //   };
 
 //   return (
-//     <div className="w-full px-4 py-4 pb-16 bg-white dark:bg-gray-900 shadow-md fixed bottom-0 left-0">
-//       {/* Input field */}
+//     <>
 //       <div className="max-w-3xl mx-auto flex items-center gap-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-3">
 //         <input
 //           type="text"
@@ -71,6 +48,7 @@
 //           value={userMessage}
 //           onChange={(e) => setUserMessage(e.target.value)}
 //           className="flex-1 bg-transparent outline-none text-gray-800 dark:text-white"
+//           onKeyDown={(e) => e.key === 'Enter' && getMessage()}
 //         />
 //         <button
 //           onClick={getMessage}
@@ -80,15 +58,16 @@
 //         </button>
 //       </div>
 
-//       {/* Love message */}
-//       <p className="fixed bottom-2 left-1/2 transform -translate-x-1/2 text-gray-600 dark:text-gray-300 text-sm">
-//         Made with <span className="mx-1 text-red-500">❤️</span> by UtkarshJi
+//       {/* Bottom-centered "Made with ❤️" message */}
+//       <p className="text-center text-gray-600 dark:text-gray-300 text-sm mt-1">
+//         Made with <span className="mx-1 text-red-500">❤️</span>
 //       </p>
-//     </div>
+//     </>
 //   );
 // }
 
 // export default ChatInput;
+
 
 import React, { useState } from "react";
 
@@ -102,6 +81,9 @@ function ChatInput({ setHistoryData }) {
   const getMessage = async () => {
     if (!userMessage) return;
 
+    // Dynamically set max tokens based on user message length
+    const estimatedMax = userMessage.length > 10 ? 900 : 300;
+
     const options = {
       method: 'POST',
       headers: {
@@ -111,7 +93,7 @@ function ChatInput({ setHistoryData }) {
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [{ role: "user", content: userMessage }],
-        max_tokens: 100,
+        max_tokens: estimatedMax, // dynamic token limit
       }),
     };
 
@@ -120,6 +102,7 @@ function ChatInput({ setHistoryData }) {
       const data = await response.json();
 
       const aiMessageResponse = data.choices[0]?.message?.content || "No response";
+      //console.log("AI raw", aiMessageResponse); for debgging
 
       if (aiMessageResponse && userMessage) {
         setHistoryData(prev => [...prev, { userMessage, aiResponse: aiMessageResponse }]);
