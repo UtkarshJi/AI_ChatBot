@@ -13,7 +13,7 @@ CheemAI is a web-based AI chatbot built using React and Vite. It connects to the
 
 ## 🌐 Live Demo
 
-👉 [cheemai.vercel.app](https://cheemai.vercel.app/)
+👉 [AI ChatBOT](https://ai-chat-bot-black-mu.vercel.app/)
 
 ## 🛠️ Tech Stack
 
